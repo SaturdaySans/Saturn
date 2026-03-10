@@ -4,6 +4,7 @@
 #include <sstream>
 #include <map>
 #include <vector>
+#include <cctype>
 
 using namespace std;
 
@@ -16,6 +17,14 @@ struct ForLoop {
 vector<ForLoop> loopStack;
 
 map<string, string> variables;
+
+bool isNumber(const string& s) {
+    if (s.empty()) return false;
+    for (char c : s) {
+        if (!isdigit(c) && c != '.' && c != '-') return false;
+    }
+    return true;
+}
 
 double getValue(string token) {
 
@@ -147,7 +156,7 @@ void executeLine(string line, vector<string>& program, int& pc) {
         int startValue = getValue(start);
         int endValue = getValue(endVal);
 
-        variables[var] = startValue;
+        variables[var] = to_string(startValue);
 
         ForLoop loop;
         loop.var = var;
@@ -163,16 +172,18 @@ void executeLine(string line, vector<string>& program, int& pc) {
 
             ForLoop &loop = loopStack.back();
 
-            // Convert the loop variable to a number
-            double val = stod(variables[loop.var]);
+            double val = 0;
+            if (isNumber(variables[loop.var])) {
+                val = stod(variables[loop.var]);
+            } else {
+                cerr << "Error: loop variable is not numeric: " << loop.var << endl;
+                exit(1);
+            }
 
-            // Increment
             val++;
 
-            // Store it back as string
             variables[loop.var] = to_string(val);
 
-            // Continue or exit loop
             if (val <= loop.end) {
                 pc = loop.start_pc;
             } else {

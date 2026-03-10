@@ -1,0 +1,14 @@
+# mewo
+let hp = 100
+let dmg = 30
+
+let remaining = hp - dmg
+print remaining
+
+if remaining < 50
+    print "low hp"
+end
+
+for i = 1 to 3
+    print "i"
+end

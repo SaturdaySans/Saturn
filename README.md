@@ -1,10 +1,10 @@
 # Saturn
 
-Saturn is a lightweight cpp interpreter <br> It supports variables, math, printing, conditionals, loops, and strings!!!
+Saturn is a lightweight cpp interpreter :D <br> It supports variables, math, printing, conditionals, loops, and strings!!!
 
 ---
 
-## Running the Language:
+## Running the Lagrange:
 
 1. Compile the interpreter (once):
 
