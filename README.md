@@ -118,12 +118,22 @@ print greeting
 
 ---
 
-### Sampel Program
+### Input
+
+```sat
+input namme "Enter name: "
+input age
+```
+
+- Input var "prompt text"
+
+### Sampel Code
 
 ```sat
 # mewo
-let hp = 100
-let dmg = 30
+input hp "Hp:"
+input dmg "Dmg:"
+input rounds "Rounds:"
 
 let remaining = hp - dmg
 print remaining
@@ -132,18 +142,14 @@ if remaining < 50
     print "low hp"
 end
 
-for i = 1 to 3
-    print "i"
+for i = 1 to rounds
+    if remaining > 0
+        print "Rounds:"
+        print i
+        let remaining = remaining - dmg
+        print remaining
+    end
 end
-```
-
-**Output:**
-
-```
-70
-1
-2
-3
 ```
 
 ---

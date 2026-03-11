@@ -122,6 +122,31 @@ void executeLine(string line, vector<string>& program, int& pc) {
         }
     }
 
+    else if (command == "input") {
+
+        string var;
+        ss >> var;
+
+        string prompt;
+        getline(ss >> ws, prompt);
+
+        if (!prompt.empty() && prompt.front() == '"' && prompt.back() == '"') {
+            cout << prompt.substr(1, prompt.size() - 2);
+            cout.flush();
+        }
+        else if (!prompt.empty()) {
+            cout << prompt;
+            cout.flush();
+        }
+
+        string inputVal;
+        if (!std::getline(cin, inputVal)) {
+            inputVal = "";
+        }
+
+        variables[var] = inputVal;
+    }
+
     else if (command == "if") {
 
         string condition;
