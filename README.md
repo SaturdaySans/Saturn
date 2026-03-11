@@ -125,7 +125,8 @@ input namme "Enter name: "
 input age
 ```
 
-- Input var "prompt text"
+- Input Variable "prompt text"
+- Prompt text is optional
 
 ### Sampel Code
 
@@ -160,3 +161,4 @@ end
 - Blocks always end with `end`
 
 Tysm! <3
+
