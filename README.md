@@ -29,7 +29,7 @@ g++ saturn.cpp -o saturn
 
 ```sat
 let x = 67
-let name = "SIXSEVEN"
+let name = "sixseven"
 ```
 
 - No explicit types: numbers and strings are inferred
@@ -161,5 +161,6 @@ end
 - Blocks always end with `end`
 
 Tysm! <3
+
 
 
