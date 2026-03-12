@@ -118,6 +118,14 @@ print greeting
 
 ---
 
+### Formatted Strings
+
+```sat
+let grade = "A"
+print "Grade: {grade}"
+
+- Similar to python's fstring
+
 ### Input
 
 ```sat
