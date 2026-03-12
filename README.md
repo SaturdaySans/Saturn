@@ -128,6 +128,16 @@ input age
 - Input Variable "prompt text"
 - Prompt text is optional
 
+### Random
+
+```sat
+random number 5
+random number 1 10
+```
+
+- Random (variable) (max)
+- Random (variable) (min) (max)
+
 ### Sampel Code
 
 ```sat
