@@ -5,6 +5,7 @@
 #include <map>
 #include <vector>
 #include <cctype>
+#include <random>
 
 using namespace std;
 
@@ -17,6 +18,9 @@ struct ForLoop {
 vector<ForLoop> loopStack;
 
 map<string, string> variables;
+
+// Random number generator for `random` command
+std::mt19937 rng((std::random_device())());
 
 bool isNumber(const string& s) {
     if (s.empty()) return false;
@@ -145,6 +149,39 @@ void executeLine(string line, vector<string>& program, int& pc) {
         }
 
         variables[var] = inputVal;
+    }
+
+    else if (command == "random") {
+
+        string var;
+        ss >> var;
+
+        string a, b;
+
+        if (!(ss >> a)) {
+            cout << "Error: random requires at least one bound\n";
+            return;
+        }
+
+        if (ss >> b) {
+            int minv = (int)getValue(a);
+            int maxv = (int)getValue(b);
+
+            if (minv > maxv) std::swap(minv, maxv);
+
+            std::uniform_int_distribution<int> dist(minv, maxv);
+            int r = dist(rng);
+            variables[var] = to_string(r);
+        } else {
+            int minv = 0;
+            int maxv = (int)getValue(a);
+
+            if (minv > maxv) std::swap(minv, maxv);
+
+            std::uniform_int_distribution<int> dist(minv, maxv);
+            int r = dist(rng);
+            variables[var] = to_string(r);
+        }
     }
 
     else if (command == "if") {
