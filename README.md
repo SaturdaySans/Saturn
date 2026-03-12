@@ -6,7 +6,7 @@ Saturn is a lightweight cpp interpreter :D <br> It supports variables, math, pri
 
 ## Running the Lagrange:
 
-1. Compile the interpreter (once):
+1. Compile the interpreter (once!):
 
 ```bash
 g++ saturn.cpp -o saturn
@@ -18,7 +18,7 @@ g++ saturn.cpp -o saturn
 ./saturn hello.sat
 ```
 
-- The `saturn` executable is the interpreter that runs `.sat` files.
+- The `saturn` executable is the interpreter that runs `.sat` files
 - You can run scripts from anywhere once the interpreter is compiled.
 
 ---
@@ -29,7 +29,7 @@ g++ saturn.cpp -o saturn
 
 ```sat
 let x = 67
-let name = "SuxSEVEN"
+let name = "sixseven"
 ```
 
 - No explicit types: numbers and strings are inferred
@@ -125,7 +125,8 @@ input namme "Enter name: "
 input age
 ```
 
-- Input var "prompt text"
+- Input Variable "prompt text"
+- Prompt text is optional
 
 ### Sampel Code
 
@@ -160,3 +161,6 @@ end
 - Blocks always end with `end`
 
 Tysm! <3
+
+
+
