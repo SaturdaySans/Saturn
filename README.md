@@ -142,8 +142,8 @@ random number 1 10
 
 ```sat
 # mewo
-input hp "Hp:"
-input dmg "Dmg:"
+random hp 10 15
+random dmg 1 3
 input rounds "Rounds:"
 
 let remaining = hp - dmg
@@ -154,6 +154,8 @@ if remaining < 50
 end
 
 for i = 1 to rounds
+    print hp
+    print dmg
     if remaining > 0
         print "Rounds:"
         print i
@@ -171,6 +173,7 @@ end
 - Blocks always end with `end`
 
 Tysm! <3
+
 
 
 
