@@ -124,7 +124,7 @@ print greeting
 let grade = "A"
 print "Grade: {grade}"
 
-- Similar to python's fstring
+- Similar to python's fstring```
 
 ### Input
 
