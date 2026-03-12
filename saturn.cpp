@@ -64,6 +64,27 @@ double evaluate(string expr) {
     return 0;
 }
 
+// Simple interpolation: replace occurrences of {var} with variables[var]
+string interpolate(const string& s) {
+    string out;
+    size_t i = 0;
+    while (i < s.size()) {
+        if (s[i] == '{') {
+            size_t j = s.find('}', i + 1);
+            if (j != string::npos) {
+                string key = s.substr(i + 1, j - (i + 1));
+                if (variables.count(key)) out += variables[key];
+                // if not found, insert empty string (could also keep placeholder)
+                i = j + 1;
+                continue;
+            }
+        }
+        out.push_back(s[i]);
+        i++;
+    }
+    return out;
+}
+
 bool evaluateCondition(string cond) {
 
     stringstream ss(cond);
@@ -85,11 +106,18 @@ bool evaluateCondition(string cond) {
     return false;
 }
 
+// (No duplicate f-string helper; use `interpolate` defined above.)
+
 void executeLine(string line, vector<string>& program, int& pc) {
 
     stringstream ss(line);
     string command;
     ss >> command;
+
+    
+
+    // debug: show executing line
+    // cout << "DEBUG: exec: '" << line << "'\n";
 
     if (command == "let") {
 
@@ -115,14 +143,21 @@ void executeLine(string line, vector<string>& program, int& pc) {
         string arg;
         getline(ss >> ws, arg);
 
-        if (arg.front() == '"' && arg.back() == '"') {
-            cout << arg.substr(1, arg.size() - 2) << endl;
+        if (!arg.empty() && arg.front() == '"' && arg.back() == '"') {
+            string content = arg.substr(1, arg.size() - 2);
+            // perform interpolation for {var} patterns
+            cout << interpolate(content) << endl;
         }
         else if (variables.count(arg)) {
             cout << variables[arg] << endl;
         }
         else {
-            cout << arg << endl;
+            // If unquoted arg contains braces, try interpolation as well
+            if (arg.find('{') != string::npos && arg.find('}') != string::npos) {
+                cout << interpolate(arg) << endl;
+            } else {
+                cout << arg << endl;
+            }
         }
     }
 
@@ -159,11 +194,12 @@ void executeLine(string line, vector<string>& program, int& pc) {
         string a, b;
 
         if (!(ss >> a)) {
-            cout << "Error: random requires at least one bound\n";
+            cout << "Error: random requires at least one bound" << endl;
             return;
         }
 
         if (ss >> b) {
+            // syntax: random var min max
             int minv = (int)getValue(a);
             int maxv = (int)getValue(b);
 
@@ -173,6 +209,7 @@ void executeLine(string line, vector<string>& program, int& pc) {
             int r = dist(rng);
             variables[var] = to_string(r);
         } else {
+            // syntax: random var max  (min defaults to 0)
             int minv = 0;
             int maxv = (int)getValue(a);
 
