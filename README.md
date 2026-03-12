@@ -123,8 +123,11 @@ print greeting
 ```sat
 let grade = "A"
 print "Grade: {grade}"
+```
 
-- Similar to python's fstring```
+- Similar to python's fstring
+
+---
 
 ### Input
 
@@ -136,6 +139,8 @@ input age
 - Input Variable "prompt text"
 - Prompt text is optional
 
+---
+
 ### Random
 
 ```sat
@@ -145,6 +150,8 @@ random number 1 10
 
 - Random (variable) (max)
 - Random (variable) (min) (max)
+
+---
 
 ### Sampel Code
 
@@ -180,6 +187,7 @@ end
 - Blocks always end with `end`
 
 Tysm! <3
+
 
 
 
