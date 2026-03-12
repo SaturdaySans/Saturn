@@ -149,7 +149,6 @@ random number 1 10
 ### Sampel Code
 
 ```sat
-# mewo
 random hp 10 15
 random dmg 1 3
 input rounds "Rounds:"
@@ -157,18 +156,18 @@ input rounds "Rounds:"
 let remaining = hp - dmg
 print remaining
 
-if remaining < 50
-    print "low hp"
-end
+#if remaining < 50
+#    print "low hp"
+#end
+
+print "Health: {hp}"
+print "Damage: {dmg}"
 
 for i = 1 to rounds
-    print hp
-    print dmg
     if remaining > 0
-        print "Rounds:"
-        print i
+        print "Round {i}"
         let remaining = remaining - dmg
-        print remaining
+        print "Remaining hp: {remaining}, Damage dealt: {dmg}"
     end
 end
 ```
